@@ -7,6 +7,7 @@
 - Discover translations from native `.lproj` resource folders, with no language
   list to maintain in code; document the translation contribution process.
 - Add isolated native menu captures to the README without desktop information.
+- Register launch at login when a fresh installation has no existing service record.
 - Check translation completeness and both visibility states in every language.
 
 ## 1.0.3 — Initial public source snapshot — 2026-10-30

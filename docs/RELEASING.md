@@ -3,7 +3,7 @@
 ## Prepare the public repository
 
 1. Use **DotBoo** for the application and **dotboo** for the repository and local
-   directory. The planned GitHub repository is `ver2ter/dotboo`. These lowercase
+   directory. The GitHub repository is `ver2ter/dotboo`. These lowercase
    repository names are a project convention, not a GitHub requirement.
    `Resources/Info.plist` owns the application's name and version. The public
    bundle identifier is `io.github.ver2ter.dotboo`. Keep this identifier stable
@@ -43,7 +43,7 @@ launch through System Settings → Privacy & Security → Open Anyway. Do not te
 users to disable Gatekeeper or remove quarantine attributes globally.
 
 Include in release notes: version, macOS 13+ requirement, Apple silicon/Intel
-universal binary, French interface, first-launch login registration, Finder
+universal binary, English/French interfaces, first-launch login registration, Finder
 restart when toggling, source-available license, and actual verification coverage.
 Do not claim a signed-and-notarized release.
 

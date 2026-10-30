@@ -70,7 +70,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         guard !UserDefaults.standard.bool(forKey: setupKey) else { return }
         do {
             let status = SMAppService.mainApp.status
-            if status == .notRegistered { try SMAppService.mainApp.register() }
+            // A fresh installation may have no Background Task Management record yet.
+            if status == .notRegistered || status == .notFound { try SMAppService.mainApp.register() }
             if SMAppService.mainApp.status == .enabled || SMAppService.mainApp.status == .requiresApproval {
                 UserDefaults.standard.set(true, forKey: setupKey)
             }
