@@ -1,0 +1,24 @@
+name: Bug report
+description: Report an application or build problem.
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Application version
+      placeholder: e.g. 1.0.1
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version and Mac architecture
+      placeholder: e.g. macOS 15.7, Apple silicon
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: What happened?
+      description: Include steps to reproduce, expected behavior, and actual behavior. Remove personal paths or other private information from logs and screenshots.
+    validations:
+      required: true

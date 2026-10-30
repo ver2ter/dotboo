@@ -1,0 +1,63 @@
+DotBoo Source-Available License
+Version 1.1 — 30 October 2026
+
+Copyright (c) 2026 ver2ter. All rights reserved except as expressly granted below.
+
+1. Scope
+
+"Software" means the source code, application binaries, build tools, and
+documentation in this repository. "Copyright holder" means ver2ter.
+
+2. Permitted use
+
+You may download, inspect, compile, install, and run the Software free of charge
+for personal and professional use, including internal use by a business or
+organization. You may make and install copies on devices you own or administer
+for these uses. This end-user permission does not grant permission to sell the
+Software or commercially exploit its code. You must retain this license and
+copyright notice in any copies you are permitted to make.
+
+3. Contributions
+
+You may modify the Software to prepare and submit a pull request to the
+copyright holder's official repository. You may share those proposed changes
+through the GitHub functionality needed to submit and review that contribution.
+Submission does not guarantee acceptance. By submitting a contribution, you
+license it under these same terms and represent that you have the right to do so.
+
+4. GitHub rights
+
+Nothing in this license limits any rights separately granted to GitHub or its
+users under the applicable GitHub Terms of Service, including viewing and
+forking a public repository through the service. A GitHub fork does not by
+itself grant permission for commercial exploitation or distribution of
+derivative software outside those separately granted rights.
+
+5. Restrictions
+
+Except for the permissions in sections 2–4 or mandatory rights under applicable
+law, you may not:
+
+- sell, rent, sublicense, or commercially distribute the Software, charge for
+  access to its functionality, or incorporate its code into another commercial
+  product or service; ordinary professional end-user use under section 2 is
+  expressly permitted;
+- distribute the Software or modified versions outside the copyright holder's
+  official distribution channels without prior written permission;
+- modify or reuse the source code for purposes other than preparing an upstream
+  contribution as described in section 3;
+- imply endorsement by the copyright holder or use the project's name or logo
+  to promote a separate product.
+
+Other uses require prior written permission from the copyright holder.
+This is a source-available license, not an OSI-approved open source license.
+
+6. Disclaimer
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE SOFTWARE IS PROVIDED
+"AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+THE COPYRIGHT HOLDER AND CONTRIBUTORS ARE NOT LIABLE FOR CLAIMS, DAMAGES, OR
+OTHER LIABILITY ARISING FROM USE OF THE SOFTWARE. NOTHING HERE EXCLUDES OR
+LIMITS ANY LIABILITY OR STATUTORY RIGHTS THAT CANNOT LAWFULLY BE EXCLUDED OR
+LIMITED.

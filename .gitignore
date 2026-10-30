@@ -1,0 +1,33 @@
+# Generated application bundles, archives, and compiler caches
+/build/
+/dist/
+/.build/
+/DerivedData/
+*.app/
+*.dmg
+*.zip
+*.xcarchive/
+
+# macOS and editor-specific files
+.DS_Store
+._*
+*.xcuserstate
+xcuserdata/
+.idea/
+.vscode/
+*.swp
+
+# Local credentials and automation context
+.env
+.env.*
+!.env.example
+*.p8
+*.p12
+*.pfx
+*.key
+*.mobileprovision
+*.provisionprofile
+/.aws/
+/.codex/
+/.agents/
+/.private/
