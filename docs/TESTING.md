@@ -8,7 +8,9 @@ ARCHS=universal ./scripts/check.sh
 
 This validates shell syntax, the property list, compilation for Apple silicon
 and Intel, the final bundle signature, icon and license resources, and JSON
-output from `--status`. It reads preferences but does not change them, restart
+output from `--status`. An isolated helper also checks bundled translation keys,
+nonempty values, language discovery, and native menu visibility, login-approval,
+and disabled states in each language. It reads preferences but does not change them, restart
 Finder, launch the UI, or modify login items.
 
 `./scripts/package.sh` additionally verifies the extracted archive signature
@@ -26,6 +28,9 @@ architecture, and restore the original Finder and login settings afterwards.
 - Left-click: the menu opens with the correct current visibility action.
 - Toggle from the menu: hidden files appear or disappear after Finder restarts.
 - Right-click: the state toggles once and the icon updates.
+- Languages: select English, Français, then System default; verify immediate
+  menu/tooltip changes, correct labels in both visibility states, and persistence
+  after quitting and reopening. A new translation must appear automatically.
 - External preference change: opening the menu refreshes its state.
 - Appearance and accessibility: check light/dark menu bars and VoiceOver labels.
 - Launch at login: check first-launch registration, disable, re-enable, and

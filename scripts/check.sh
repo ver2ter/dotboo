@@ -27,4 +27,18 @@ assert set(status) == {"visible", "loginStatus", "hasLastError", "version"}, "Un
 assert type(status["hasLastError"]) is bool, "Missing error flag"
 assert isinstance(status["version"], str), "Missing version"
 '
-printf 'Build, signature, resources, and read-only status check passed.\n'
+# Run menu/localization tests in an isolated bundle without changing preferences.
+check_root=$(mktemp -d "${BUILD_DIR:-$project_root/build}/.localization-check.XXXXXX")
+trap 'rm -rf -- "$check_root"' EXIT
+check_app="$check_root/LocalizationCheck.app"
+mkdir -p "$check_app/Contents/MacOS" "$check_app/Contents/Resources"
+cp -R "$app/Contents/Resources/"*.lproj "$check_app/Contents/Resources/"
+cat > "$check_app/Contents/Info.plist" <<'PLIST'
+<?xml version="1.0" encoding="UTF-8"?><plist version="1.0"><dict><key>CFBundleExecutable</key><string>LocalizationCheck</string><key>CFBundleIdentifier</key><string>io.github.ver2ter.dotboo.localization-check</string><key>CFBundleDevelopmentRegion</key><string>en</string><key>LSUIElement</key><true/></dict></plist>
+PLIST
+xcrun swiftc -O -module-cache-path "${BUILD_DIR:-$project_root/build}/ModuleCache" -framework AppKit -framework ServiceManagement \
+    "$project_root/Sources/Localization.swift" "$project_root/Sources/MenuBuilder.swift" \
+    "$project_root/Sources/AppDelegate.swift" "$project_root/Sources/FinderVisibility.swift" \
+    "$project_root/Tools/CheckLocalization.swift" -o "$check_app/Contents/MacOS/LocalizationCheck"
+"$check_app/Contents/MacOS/LocalizationCheck"
+printf 'Build, signature, resources, localizations, menus, and read-only status check passed.\n'

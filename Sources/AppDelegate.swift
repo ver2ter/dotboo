@@ -2,13 +2,10 @@ import AppKit
 import ServiceManagement
 
 @MainActor
-final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
+final class AppDelegate: NSObject, NSApplicationDelegate {
     private let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ?? "DotBoo"
     private var statusItem: NSStatusItem!
-    private let menu = NSMenu()
-    private var visibilityItem: NSMenuItem!
-    private var loginItem: NSMenuItem!
-    private var approvalItem: NSMenuItem!
+    private var menu = NSMenu()
     private var isUpdating = false
     private let setupKey = "didConfigureLoginItem"
 
@@ -21,35 +18,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             button.sendAction(on: [.leftMouseUp, .rightMouseUp])
             button.setAccessibilityLabel(appName)
         }
-        menu.delegate = self
-        menu.autoenablesItems = false
-        let title = NSMenuItem(title: appName, action: nil, keyEquivalent: "")
-        title.isEnabled = false
-        menu.addItem(title)
-        visibilityItem = addItem("", action: #selector(toggleVisibility))
-        let hint = NSMenuItem(title: "Clic droit sur l’icône : basculer", action: nil, keyEquivalent: "")
-        hint.isEnabled = false
-        menu.addItem(hint)
-        let refreshHint = NSMenuItem(title: "Le Finder se relance pour appliquer le réglage.", action: nil, keyEquivalent: "")
-        refreshHint.isEnabled = false
-        menu.addItem(refreshHint)
-        menu.addItem(.separator())
-        loginItem = addItem("Ouvrir à la connexion", action: #selector(toggleLogin))
-        approvalItem = addItem("Autoriser dans les Réglages Système…", action: #selector(openLoginSettings))
-        menu.addItem(.separator())
-        addItem("Quitter \(appName)", action: #selector(quit))
         refresh()
         configureInitialLogin()
         NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(refresh),
             name: NSWorkspace.didActivateApplicationNotification, object: nil)
-    }
-
-    @discardableResult
-    private func addItem(_ title: String, action: Selector) -> NSMenuItem {
-        let item = NSMenuItem(title: title, action: action, keyEquivalent: "")
-        item.target = self
-        menu.addItem(item)
-        return item
     }
 
     @objc private func statusItemClicked(_ sender: NSStatusBarButton) {
@@ -63,20 +35,25 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         }
     }
 
-    func menuWillOpen(_ menu: NSMenu) { refresh() }
-
     @objc private func refresh() {
         let visible = FinderVisibility.isVisible
         let image = NSImage(systemSymbolName: visible ? "eye" : "eye.slash",
-                            accessibilityDescription: visible ? "Fichiers cachés visibles" : "Fichiers cachés masqués")
+                            accessibilityDescription: L10n.text(visible ? "visibility.visible" : "visibility.hidden"))
         image?.isTemplate = true
         statusItem.button?.image = image
-        statusItem.button?.toolTip = "Fichiers cachés \(visible ? "visibles" : "masqués") · Clic droit pour basculer"
-        visibilityItem.title = visible ? "Masquer les fichiers cachés" : "Afficher les fichiers cachés"
-        visibilityItem.isEnabled = !isUpdating
+        statusItem.button?.toolTip = L10n.text(visible ? "visibility.tooltip.visible" : "visibility.tooltip.hidden")
         let status = SMAppService.mainApp.status
-        loginItem.state = status == .enabled ? .on : (status == .requiresApproval ? .mixed : .off)
-        approvalItem.isHidden = status != .requiresApproval
+        menu = MenuBuilder.make(visible: visible,
+            loginState: status == .enabled ? .on : (status == .requiresApproval ? .mixed : .off),
+            requiresApproval: status == .requiresApproval, updating: isUpdating, target: self)
+    }
+
+    @objc private func selectLanguage(_ sender: NSMenuItem) {
+        guard let code = sender.representedObject as? String,
+              code.isEmpty || L10n.languages.contains(code) else { return }
+        if code.isEmpty { UserDefaults.standard.removeObject(forKey: L10n.preferenceKey) }
+        else { UserDefaults.standard.set(code, forKey: L10n.preferenceKey) }
+        refresh()
     }
 
     @objc private func toggleVisibility() {
@@ -86,7 +63,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         do {
             try FinderVisibility.setVisible(!FinderVisibility.isVisible)
             UserDefaults.standard.removeObject(forKey: "lastOperationError")
-        } catch { showError(error, title: "Impossible d’actualiser le Finder") }
+        } catch { showError(error, title: L10n.text("error.finder.title")) }
     }
 
     private func configureInitialLogin() {
@@ -97,7 +74,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             if SMAppService.mainApp.status == .enabled || SMAppService.mainApp.status == .requiresApproval {
                 UserDefaults.standard.set(true, forKey: setupKey)
             }
-        } catch { showError(error, title: "Le démarrage automatique nécessite ton attention") }
+        } catch { showError(error, title: L10n.text("error.login.initial")) }
         refresh()
     }
 
@@ -109,7 +86,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             default: try SMAppService.mainApp.register()
             }
             UserDefaults.standard.set(true, forKey: setupKey)
-        } catch { showError(error, title: "Impossible de modifier le démarrage automatique") }
+        } catch { showError(error, title: L10n.text("error.login.change")) }
         refresh()
     }
 
@@ -121,7 +98,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         let alert = NSAlert()
         alert.messageText = title
         alert.informativeText = error.localizedDescription
-        alert.addButton(withTitle: "OK")
+        alert.addButton(withTitle: L10n.text("button.ok"))
         NSApp.activate(ignoringOtherApps: true)
         alert.runModal()
     }

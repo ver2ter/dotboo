@@ -1,6 +1,15 @@
 # Changelog
 
-## 1.0.3 — Preview — 2026-10-30
+## 1.1.0 — Preview — 2026-10-30
+
+- Add English and French, automatic system-language matching, and an immediate
+  language selector in the menu.
+- Discover translations from native `.lproj` resource folders, with no language
+  list to maintain in code; document the translation contribution process.
+- Add isolated native menu captures to the README without desktop information.
+- Check translation completeness and both visibility states in every language.
+
+## 1.0.3 — Initial public source snapshot — 2026-10-30
 
 - Adopt the approved outlined ghost logo and ivory macOS application icon.
 - Use the public bundle identity `io.github.ver2ter.dotboo`.
@@ -18,4 +27,4 @@
 - Permit personal and professional end-user use under the DotBoo source-available
   license, while restricting resale and commercial exploitation of the code.
 
-The interface remains in French. Builds are ad-hoc signed, not notarized.
+Builds are ad-hoc signed, not notarized.

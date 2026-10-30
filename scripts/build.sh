@@ -22,6 +22,9 @@ trap 'rm -rf -- "$work_dir"' EXIT
 app="$work_dir/$app_name.app"
 mkdir -p "$app/Contents/MacOS" "$app/Contents/Resources" "$build_root/ModuleCache"
 cp "$plist" "$app/Contents/Info.plist"
+for localization in "$project_root"/Resources/*.lproj; do
+    cp -R "$localization" "$app/Contents/Resources/"
+done
 
 executables=()
 for arch in "${architectures[@]}"; do

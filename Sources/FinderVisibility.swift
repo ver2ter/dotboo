@@ -13,7 +13,7 @@ enum FinderVisibility {
         CFPreferencesSetAppValue(key, value ? kCFBooleanTrue : kCFBooleanFalse, domain)
         guard CFPreferencesAppSynchronize(domain), isVisible == value else {
             throw NSError(domain: "FichiersMasques", code: 1,
-                          userInfo: [NSLocalizedDescriptionKey: "Le réglage du Finder n’a pas pu être enregistré."])
+                          userInfo: [NSLocalizedDescriptionKey: L10n.text("error.finder.save")])
         }
         // Finder automatically relaunches after termination. Arguments are never shell code.
         let restart = Process()
@@ -26,7 +26,7 @@ enum FinderVisibility {
         // Exit 1 simply means Finder was not running; its next launch reads the preference.
         guard restart.terminationStatus == 0 || restart.terminationStatus == 1 else {
             throw NSError(domain: "FichiersMasques", code: 2,
-                          userInfo: [NSLocalizedDescriptionKey: "Le réglage est enregistré, mais le Finder n’a pas pu être actualisé."])
+                          userInfo: [NSLocalizedDescriptionKey: L10n.text("error.finder.refresh")])
         }
     }
 }
