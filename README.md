@@ -56,10 +56,10 @@ To contribute another language, see the [translation guide](docs/LOCALIZATION.md
 
 ## Get DotBoo
 
-**[Download DotBoo 1.1.0 — preview](https://github.com/ver2ter/dotboo/releases/tag/v1.1.0)**
+**[Download DotBoo 1.1.0 Beta 1](https://github.com/ver2ter/dotboo/releases/tag/v1.1.0-beta.1)**
 
 The release includes a universal ZIP for Apple silicon and Intel, plus a SHA-256
-checksum. This is an early preview: automated build and package checks pass,
+checksum. This is a beta release: automated build and package checks pass,
 but manual verification across supported Macs and macOS versions is incomplete.
 You can also [build the application from source](#build-from-source).
 

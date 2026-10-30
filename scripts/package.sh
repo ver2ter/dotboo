@@ -5,7 +5,7 @@ export ARCHS=universal
 "$project_root/scripts/check.sh"
 plist="$project_root/Resources/Info.plist"
 app_name=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$plist")
-version=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$plist")
+version=$(/usr/libexec/PlistBuddy -c 'Print :DotBooReleaseVersion' "$plist")
 dist_root="$project_root/dist"
 mkdir -p "$dist_root"
 archive="$app_name-$version-universal.zip"

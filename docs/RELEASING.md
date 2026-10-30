@@ -23,8 +23,10 @@
 
 ## Build and verify
 
-1. Update `CFBundleShortVersionString` and increment `CFBundleVersion` in
-   `Resources/Info.plist` for a new application build.
+1. Set `DotBooReleaseVersion` in `Resources/Info.plist` to the full release
+   version (for example `1.1.0-beta.1`). Keep `CFBundleShortVersionString` numeric
+   (`1.1.0`) for macOS, and increment `CFBundleVersion` for every new build.
+   The archive name and CLI status use the full release version.
 2. Run `./scripts/package.sh`. It builds a universal application, runs checks,
    embeds the license, and writes the ZIP and checksum to `dist/`.
 3. Complete and record the relevant [manual checks](TESTING.md). Separate tested
@@ -32,7 +34,10 @@
 4. Check archive contents with `unzip -l dist/*.zip`. Verify extraction preserves
    the app signature. Only the application bundle belongs in the release ZIP.
 5. Commit the reviewed source, tag that commit as `vX.Y.Z`, and publish a GitHub
-   Release from the same tag with the ZIP and its `.sha256` file.
+   Release from the same tag with the ZIP and its `.sha256` file. Mark alpha,
+   beta, and release-candidate versions as pre-releases. Attach and verify all
+   assets in the draft before publishing: immutable releases lock their assets
+   and tag on publication.
 
 ## Current distribution: no Developer ID
 
