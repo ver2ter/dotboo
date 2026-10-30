@@ -37,10 +37,12 @@ supported system.
 
 ## Get DotBoo
 
-**The first public release is being prepared.** You can currently
-[build the application from source](#build-from-source). Packaged downloads will
-be published in this repository's Releases section, together with a SHA-256
-checksum.
+**[Download DotBoo 1.0.3 — preview](https://github.com/ver2ter/dotboo/releases/tag/v1.0.3)**
+
+The release includes a universal ZIP for Apple silicon and Intel, plus a SHA-256
+checksum. This is an early preview: automated build and package checks pass,
+but manual verification across supported Macs and macOS versions is incomplete.
+You can also [build the application from source](#build-from-source).
 
 To install a packaged version:
 
@@ -124,7 +126,7 @@ configure.
 - [Changelog](CHANGELOG.md) — changes between versions.
 - [Security policy](SECURITY.md) — reporting a suspected vulnerability.
 
-For bugs or ideas, use this repository's Issues section once it is public.
+For bugs or ideas, use [GitHub Issues](https://github.com/ver2ter/dotboo/issues).
 Include the DotBoo version, macOS version, Mac architecture, and steps to
 reproduce the problem. Contributions are welcome through pull requests under
 the [contribution guidelines](CONTRIBUTING.md).

@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.3 — Unreleased
+## 1.0.3 — Preview — 2026-10-30
 
 - Adopt the approved outlined ghost logo and ivory macOS application icon.
 - Use the public bundle identity `io.github.ver2ter.dotboo`.
