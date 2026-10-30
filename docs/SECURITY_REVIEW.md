@@ -19,7 +19,7 @@ Reviewed locally on 30 October 2026 for DotBoo 1.0.3 (4), before the first push.
 ## Code observations
 
 The app has no networking, telemetry, upload, file scanning, or account features.
-Its persistent state is local: Finder visibility, login setup, and the last local
+Its persistent state is local: Finder visibility, login setup, the language choice, and the last local
 operation error. Error details can appear in a local alert but are not sent out
 or included in CLI status output.
 
@@ -54,3 +54,13 @@ an independent penetration test or a guarantee that every possible issue is
 absent. Real Intel/macOS 13 execution, UI actions, login behavior, and first-launch
 Gatekeeper behavior on a clean account still need the manual checks in TESTING.md.
 The application is ad-hoc signed and is not notarized by Apple.
+
+## Multilingual update (1.1.0)
+
+Translation resources are bundled locally; language selection adds no network
+access. The screenshot helper is a separate developer tool, excluded from the
+shipped application. It uses the same native menu builder with fixed demo
+settings and never calls Finder or login-item APIs. It captures only a window
+owned by its own process, with its own opaque neutral backing window behind
+the menu. Desktop capture is never used. Both resulting images were visually
+reviewed before inclusion in the public repository.

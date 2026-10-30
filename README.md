@@ -28,16 +28,35 @@ is built with native macOS frameworks and has no third-party dependencies.
 - **Toggle with a right-click** on the menu bar icon.
 - **See the current setting** through the eye icon and menu action.
 - **Manage launch at login** from the same menu.
+- **Choose English or French**, or follow your system language.
 - **Stay out of the way** with no main window or Dock icon.
 
-The interface is currently in French. Universal builds include both Apple
-silicon and Intel executables, with macOS 13 Ventura as the deployment target.
+Universal builds include both Apple silicon and Intel executables, with
+macOS 13 Ventura as the deployment target.
 See [verification coverage](docs/TESTING.md) for the checks to perform on each
 supported system.
 
+## A look inside
+
+<table>
+  <tr><th>English</th><th>Français</th></tr>
+  <tr>
+    <td><img src="docs/assets/menu-en.png" alt="DotBoo menu in English" height="250"></td>
+    <td><img src="docs/assets/menu-fr.png" alt="Menu de DotBoo en français" height="250"></td>
+  </tr>
+</table>
+
+Native menus captured in a dedicated preview window on a neutral background.
+They use the application's menu code with demonstration settings; no personal
+desktop, files, or account information is shown. Appearance varies with macOS.
+
+DotBoo follows your system language when available, with English as the fallback.
+Use **Language → English / Français / System default** to change it instantly.
+To contribute another language, see the [translation guide](docs/LOCALIZATION.md).
+
 ## Get DotBoo
 
-**[Download DotBoo 1.0.3 — preview](https://github.com/ver2ter/dotboo/releases/tag/v1.0.3)**
+**[Download DotBoo 1.1.0 — preview](https://github.com/ver2ter/dotboo/releases/tag/v1.1.0)**
 
 The release includes a universal ZIP for Apple silicon and Intel, plus a SHA-256
 checksum. This is an early preview: automated build and package checks pass,
@@ -59,7 +78,7 @@ attempt to open the application, then use **System Settings → Privacy & Securi
 → Open Anyway**. Keep macOS security protections enabled.
 
 On first launch, DotBoo also attempts to enable launch at login. You can turn
-this off using **Ouvrir à la connexion** in its menu. If macOS requires approval,
+this off using **Launch at login** in its menu. If macOS requires approval,
 the menu provides a link to Login Items in System Settings.
 
 ## How it works
@@ -67,10 +86,10 @@ the menu provides a link to Login Items in System Settings.
 | Action | Result |
 | --- | --- |
 | Left-click the eye icon | Open the menu and refresh the displayed setting |
-| Choose **Afficher les fichiers cachés** | Show hidden files and folders |
-| Choose **Masquer les fichiers cachés** | Hide them again |
+| Choose **Show hidden files** | Show hidden files and folders |
+| Choose **Hide hidden files** | Hide them again |
 | Right-click the eye icon | Switch between the two states |
-| Choose **Quitter DotBoo** | Quit while keeping the current Finder setting |
+| Choose **Quit DotBoo** | Quit while keeping the current Finder setting |
 
 **Finder restarts when you toggle visibility.** This can interrupt Finder
 activity. The setting applies globally and remains in effect after DotBoo quits.
@@ -85,7 +104,7 @@ If you want hidden files hidden afterwards, select that setting before quitting.
 
 DotBoo does not scan your folders, send diagnostics, or collect usage data.
 It reads and writes Finder's hidden-file preference and keeps its login-setup
-flag and last error locally. Launch at login uses Apple's ServiceManagement
+flag, language choice, and last error locally. Launch at login uses Apple's ServiceManagement
 framework.
 
 The optional `--status` diagnostic command is read-only and reports visibility,

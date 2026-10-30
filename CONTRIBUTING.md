@@ -28,10 +28,30 @@ For menu or preference changes, complete the relevant scenarios in
 State your macOS version and architecture; cross-compiling Intel code on Apple
 silicon does not verify behavior on an Intel Mac.
 
+## Commit messages
+
+Use [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/)
+for new commits and pull request titles:
+
+```text
+feat(i18n): add a German translation
+fix(menu): refresh the visibility label
+docs: clarify installation steps
+```
+
+Use `feat` for a feature and `fix` for a bug fix. Other descriptive types such as
+`docs`, `test`, `build`, `ci`, and `refactor` are welcome. A scope is optional.
+Indicate a breaking change with `!` before the colon or a `BREAKING CHANGE:`
+footer. Keep the subject concise and describe the change in English.
+
 ## Source organization
 
 - `Sources/main.swift`: application startup and diagnostic commands.
 - `Sources/AppDelegate.swift`: menu bar UI and login-item actions.
+- `Sources/MenuBuilder.swift`: shared native menus for the app and preview tool.
+- `Sources/Localization.swift`: language resolution and translated text.
+- `Resources/*.lproj/Localizable.strings`: translation tables; see the
+  [translation guide](docs/LOCALIZATION.md).
 - `Sources/FinderVisibility.swift`: Finder preference and refresh operation.
 - `Resources/Info.plist`: bundle identity and version.
 - `Tools/GenerateIcons.swift`: build-time icon rendering.
