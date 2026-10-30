@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.1.0 — Preview — 2026-10-30
+## 1.1.0-beta.1 — 2026-10-30
 
 - Add English and French, automatic system-language matching, and an immediate
   language selector in the menu.

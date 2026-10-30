@@ -10,7 +10,8 @@ try MainActor.assumeIsolated {
         let data: [String: Any] = ["visible": FinderVisibility.isVisible,
             "loginStatus": SMAppService.mainApp.status.rawValue,
             "hasLastError": UserDefaults.standard.string(forKey: "lastOperationError")?.isEmpty == false,
-            "version": Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "unknown"]
+            "version": Bundle.main.object(forInfoDictionaryKey: "DotBooReleaseVersion") as? String
+                ?? Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "unknown"]
         print(String(data: try JSONSerialization.data(withJSONObject: data, options: [.sortedKeys]), encoding: .utf8)!)
     } else {
         let application = NSApplication.shared
