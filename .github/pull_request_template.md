@@ -4,6 +4,7 @@ Describe the problem and the resulting behavior.
 
 ## Verification
 
+- [ ] The PR title and new commits follow Conventional Commits.
 - [ ] `ARCHS=universal ./scripts/check.sh` passes on macOS.
 - [ ] I have described any manual verification and its limitations.
 - [ ] Documentation is updated if behavior or installation changes.
